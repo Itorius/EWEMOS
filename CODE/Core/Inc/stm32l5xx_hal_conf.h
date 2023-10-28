@@ -40,7 +40,7 @@
 /*#define HAL_CRYP_MODULE_ENABLED   */
 /*#define HAL_DAC_MODULE_ENABLED   */
 /*#define HAL_DFSDM_MODULE_ENABLED   */
-#define HAL_FDCAN_MODULE_ENABLED
+/*#define HAL_FDCAN_MODULE_ENABLED   */
 /*#define HAL_GTZC_MODULE_ENABLED   */
 /*#define HAL_HASH_MODULE_ENABLED   */
 /*#define HAL_IRDA_MODULE_ENABLED   */
@@ -50,9 +50,9 @@
 /*#define HAL_NAND_MODULE_ENABLED   */
 /*#define HAL_NOR_MODULE_ENABLED   */
 /*#define HAL_OPAMP_MODULE_ENABLED   */
-#define HAL_OSPI_MODULE_ENABLED
+/*#define HAL_OSPI_MODULE_ENABLED   */
 /*#define HAL_OTFDEC_MODULE_ENABLED   */
-#define HAL_PCD_MODULE_ENABLED
+/*#define HAL_PCD_MODULE_ENABLED   */
 /*#define HAL_PKA_MODULE_ENABLED   */
 /*#define HAL_RCC_MODULE_ENABLED   */
 /*#define HAL_RNG_MODULE_ENABLED   */
@@ -61,7 +61,7 @@
 /*#define HAL_SD_MODULE_ENABLED   */
 /*#define HAL_SMARTCARD_MODULE_ENABLED   */
 /*#define HAL_SMBUS_MODULE_ENABLED   */
-/*#define HAL_SPI_MODULE_ENABLED   */
+#define HAL_SPI_MODULE_ENABLED
 /*#define HAL_SRAM_MODULE_ENABLED   */
 /*#define HAL_TIM_MODULE_ENABLED   */
 /*#define HAL_TSC_MODULE_ENABLED   */
@@ -176,7 +176,7 @@
   * @brief Uncomment the line below to expanse the "assert_param" macro in the
   *        HAL drivers code
   */
-/* #define USE_FULL_ASSERT    1U */
+ #define USE_FULL_ASSERT    1U
 
 /* ################## Register callback feature configuration ############### */
 /**

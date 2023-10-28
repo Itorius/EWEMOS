@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="CMakePresetLoader">{
+  &quot;useNewFormat&quot;: true
+}</component>
+  <component name="CMakeReloadState">
+    <option name="reloaded" value="true" />
+  </component>
+  <component name="CMakeRunConfigurationManager">
+    <generated>
+      <config projectName="untitled" targetName="untitled.elf" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ad5f8554-bd19-4bf6-b4cd-ed60668becee" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="EmbeddedSvdWindowState">
+    <option name="columnWidths">
+      <list>
+        <option value="212" />
+        <option value="92" />
+        <option value="1503" />
+      </list>
+    </option>
+    <option name="columnOrder">
+      <list>
+        <option value="Name" />
+        <option value="Value" />
+        <option value="Description" />
+      </list>
+    </option>
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="oigbg86z" />
+  </component>
+  <component name="ProjectApplicationVersion">
+    <option name="ide" value="CLion" />
+    <option name="majorVersion" value="2023" />
+    <option name="minorVersion" value="2.1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2UhiCPh7ddgkKYd5C9rdWG81TCx" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="false" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/itorius/Downloads/itm_viewer-1.2.0.jar&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;serialMonitor.commands&quot;: &quot;AT+SYSSTORE?\nAT+CWMODE?\nAT+CWMODE=1,0\nAT+SYSSTORE=0\nr\na\nar\nsdfaw\nSY\nAT&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.general&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Core/Src" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Core/Inc" />
+    </key>
+  </component>
+  <component name="RunManager" selected="OpenOCD Download &amp; Run.OCD untitled">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="untitled.elf" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="untitled" TARGET_NAME="untitled.elf" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="untitled" RUN_TARGET_NAME="untitled.elf">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Unnamed" type="com.jetbrains.cidr.embedded.customgdbserver.type" factoryName="com.jetbrains.cidr.embedded.customgdbserver.factory" PROGRAM_PARAMS="-p 34875 -cp &quot;/opt/st/stm32cubeide_1.13.1/plugins/com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.linux64_2.1.0.202305091550/tools/bin&quot; --frequency 8000 --swd" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="untitled" TARGET_NAME="untitled.elf" CONFIG_NAME="Debug" version="1" RUN_TARGET_PROJECT_NAME="untitled" RUN_TARGET_NAME="untitled.elf">
+      <custom-gdb-server version="1" gdb-connect="tcp::34875" executable="/opt/st/stm32cubeide_1.13.1/plugins/com.st.stm32cube.ide.mcu.externaltools.stlink-gdb-server.linux64_2.1.0.202305091550/tools/bin/ST-LINK_gdbserver" warmup-ms="0" download-type="ALWAYS" reset-cmd="monitor reset" reset-type="AFTER_DOWNLOAD">
+        <debugger kind="GDB" isBundled="true" />
+      </custom-gdb-server>
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="CMake Application.untitled.elf" />
+      <item itemvalue="Embedded GDB Server.Unnamed" />
+      <item itemvalue="OpenOCD Download &amp; Run.OCD untitled" />
+    </list>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ad5f8554-bd19-4bf6-b4cd-ed60668becee" name="Changes" comment="" />
+      <created>1693398084159</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1693398084159</updated>
+      <workItem from="1693398135457" duration="5909000" />
+      <workItem from="1693406900483" duration="3156000" />
+      <workItem from="1693411691453" duration="1371000" />
+      <workItem from="1694601309132" duration="2255000" />
+      <workItem from="1694856288127" duration="7347000" />
+      <workItem from="1694882894732" duration="3227000" />
+      <workItem from="1695575420592" duration="4000" />
+      <workItem from="1696526402480" duration="2991000" />
+      <workItem from="1696667181243" duration="5426000" />
+      <workItem from="1696673940205" duration="5173000" />
+      <workItem from="1696700974943" duration="6625000" />
+      <workItem from="1696709124344" duration="1118000" />
+      <workItem from="1696710787313" duration="52000" />
+      <workItem from="1696713332483" duration="51000" />
+      <workItem from="1696768687625" duration="6995000" />
+      <workItem from="1696782027522" duration="4959000" />
+      <workItem from="1697132348392" duration="2048000" />
+      <workItem from="1697134463345" duration="604000" />
+      <workItem from="1697135103270" duration="5349000" />
+      <workItem from="1697187948558" duration="18613000" />
+      <workItem from="1697305802953" duration="3461000" />
+      <workItem from="1697740556466" duration="5713000" />
+      <workItem from="1697828261786" duration="3962000" />
+      <workItem from="1697968273569" duration="3812000" />
+      <workItem from="1698346064816" duration="2784000" />
+      <workItem from="1698412243564" duration="16782000" />
+      <workItem from="1698481788306" duration="6232000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VCPKGProject">
+    <isAutomaticEditVcpkgJson value="false" />
+    <isAutomaticCheckingOnLaunch value="false" />
+    <isAutomaticFoundErrors value="true" />
+    <isAutomaticFoundErrors value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Core/Src/AT/MQTTSim800.c</url>
+          <line>160</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Drivers/STM32L5xx_HAL_Driver/Src/stm32l5xx_hal_gpio.c</url>
+          <line>507</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Core/Src/main.c</url>
+          <line>173</line>
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="com.jetbrains.cidr.embedded.openocd.conf.type">
+        <watch expression="data" language="ObjectiveC" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

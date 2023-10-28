@@ -36,7 +36,13 @@ extern "C" {
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
-
+struct ID
+{
+	uint16_t xcoord;
+	uint16_t ycoord;
+	uint8_t wafernum;
+	char lot[7];
+};
 /* USER CODE END ET */
 
 /* Exported constants --------------------------------------------------------*/
@@ -57,6 +63,13 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define LED_Pin GPIO_PIN_13
+#define LED_GPIO_Port GPIOC
+#define CS_Pin GPIO_PIN_0
+#define CS_GPIO_Port GPIOA
+#define HANDSHAKE_Pin GPIO_PIN_1
+#define HANDSHAKE_GPIO_Port GPIOA
+#define HANDSHAKE_EXTI_IRQn EXTI1_IRQn
 
 /* USER CODE BEGIN Private defines */
 

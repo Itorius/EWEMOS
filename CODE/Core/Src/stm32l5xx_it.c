@@ -51,11 +51,10 @@
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
-extern PCD_HandleTypeDef hpcd_USB_FS;
+
 /* USER CODE BEGIN EV */
 
 /* USER CODE END EV */
@@ -72,9 +71,9 @@ void NMI_Handler(void)
 
   /* USER CODE END NonMaskableInt_IRQn 0 */
   /* USER CODE BEGIN NonMaskableInt_IRQn 1 */
-  while (1)
-  {
-  }
+	while (1)
+	{
+	}
   /* USER CODE END NonMaskableInt_IRQn 1 */
 }
 
@@ -199,17 +198,17 @@ void SysTick_Handler(void)
 /******************************************************************************/
 
 /**
-  * @brief This function handles USB FS global interrupt / USB FS wake-up interrupt through EXTI line 34.
+  * @brief This function handles EXTI line1 interrupt.
   */
-void USB_FS_IRQHandler(void)
+void EXTI1_IRQHandler(void)
 {
-  /* USER CODE BEGIN USB_FS_IRQn 0 */
+  /* USER CODE BEGIN EXTI1_IRQn 0 */
 
-  /* USER CODE END USB_FS_IRQn 0 */
-  HAL_PCD_IRQHandler(&hpcd_USB_FS);
-  /* USER CODE BEGIN USB_FS_IRQn 1 */
+  /* USER CODE END EXTI1_IRQn 0 */
+  HAL_GPIO_EXTI_IRQHandler(HANDSHAKE_Pin);
+  /* USER CODE BEGIN EXTI1_IRQn 1 */
 
-  /* USER CODE END USB_FS_IRQn 1 */
+  /* USER CODE END EXTI1_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */
