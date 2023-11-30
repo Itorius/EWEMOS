@@ -49,6 +49,7 @@ else ()
 endif ()
 
 include_directories(${includes})
+include_directories(Core/Src/lwesp/src/include)
 
 add_definitions(${defines})
 
@@ -59,7 +60,6 @@ set(LINKER_SCRIPT $${CMAKE_SOURCE_DIR}/${linkerScript})
 add_link_options(-Wl,-gc-sections,--print-memory-usage,-Map=$${PROJECT_BINARY_DIR}/$${PROJECT_NAME}.map)
 add_link_options(-mcpu=${mcpu} -mthumb -mthumb-interwork)
 add_link_options(-T $${LINKER_SCRIPT})
-#add_link_options(--specs=rdimon.specs -lc -lrdimon)
 
 add_executable($${PROJECT_NAME}.elf $${SOURCES} $${LINKER_SCRIPT})
 

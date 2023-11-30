@@ -14,15 +14,14 @@ char base46_map[] = {
 	'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '/'
 };
 
-char* base64_encode(const char* plain, uint8_t len)
+void base64_encode(const char* plain, uint8_t len, char* cipher)
 {
-
 	char counts = 0;
 	char buffer[3];
-	char* cipher = malloc(len * 4 / 3 + 4);
-	int i = 0, c = 0;
+//	char cipher[len * 4 / 3 + 4];
+	int c = 0;
 
-	for (i = 0; i < len; i++)
+	for (int i = 0; i < len; i++)
 	{
 		buffer[counts++] = plain[i];
 		if (counts == 3)
@@ -50,9 +49,7 @@ char* base64_encode(const char* plain, uint8_t len)
 		}
 		cipher[c++] = '=';
 	}
-
-	cipher[c] = '\0';   /* string padding character */
-	return cipher;
+	cipher[c]='\0';
 }
 
 char* base64_decode(char* cipher)

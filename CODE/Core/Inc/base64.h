@@ -17,7 +17,7 @@ Encodes ASCCI string into MCUCode format string
 @param plain ASCII string to be encoded
 @return encoded MCUCode format string
 ***********************************************/
-char* base64_encode(const char* plain, uint8_t len);
+void base64_encode(const char* plain, uint8_t len, char* cipher);
 
 
 /***********************************************

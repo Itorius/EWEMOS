@@ -14,7 +14,7 @@ set(SIZE arm-none-eabi-size)
 set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 
 # project settings
-project(untitled C CXX ASM)
+project(LwESP C CXX ASM)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_C_STANDARD 11)
 
@@ -49,18 +49,18 @@ else ()
     add_compile_options(-Og -g)
 endif ()
 
-include_directories(Core/Inc Drivers/STM32L5xx_HAL_Driver/Inc Drivers/STM32L5xx_HAL_Driver/Inc/Legacy Drivers/CMSIS/Device/ST/STM32L5xx/Include Drivers/CMSIS/Include)
+include_directories(Core/Inc Drivers/STM32L5xx_HAL_Driver/Inc Drivers/STM32L5xx_HAL_Driver/Inc/Legacy Drivers/CMSIS/Device/ST/STM32L5xx/Include Drivers/CMSIS/Include Middlewares/Third_Party/FreeRTOS/Source/include Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM33_NTZ/non_secure Core/Inc Drivers/STM32L5xx_HAL_Driver/Inc Drivers/STM32L5xx_HAL_Driver/Inc/Legacy Middlewares/Third_Party/FreeRTOS/Source/include Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM33_NTZ/non_secure Drivers/CMSIS/Device/ST/STM32L5xx/Include Drivers/CMSIS/Include)
+include_directories(Core/Src/lwesp/src/include)
 
-add_definitions(-DDEBUG -DUSE_HAL_DRIVER -DSTM32L552xx)
+add_definitions(-DDEBUG -DUSE_HAL_DRIVER -DSTM32L552xx -DUSE_FULL_LL_DRIVER -DDEBUG -DUSE_HAL_DRIVER -DSTM32L552xx)
 
-file(GLOB_RECURSE SOURCES "Core/*.*" "Drivers/*.*")
+file(GLOB_RECURSE SOURCES "Core/*.*" "Middlewares/*.*" "Drivers/*.*" "Core/*.*" "Middlewares/*.*" "Drivers/*.*")
 
-set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/STM32L552CCTX_FLASH.ld)
+set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/STM32L552CETX_FLASH.ld)
 
 add_link_options(-Wl,-gc-sections,--print-memory-usage,-Map=${PROJECT_BINARY_DIR}/${PROJECT_NAME}.map)
 add_link_options(-mcpu=cortex-m33 -mthumb -mthumb-interwork)
 add_link_options(-T ${LINKER_SCRIPT})
-#add_link_options(--specs=rdimon.specs -lc -lrdimon)
 
 add_executable(${PROJECT_NAME}.elf ${SOURCES} ${LINKER_SCRIPT})
 
