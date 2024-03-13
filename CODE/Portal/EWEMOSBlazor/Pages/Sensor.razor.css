@@ -1,0 +1,154 @@
+* {
+  color: white;
+}
+
+.name {
+  display: flex;
+  align-items: center;
+}
+.name h1 {
+  font-size: 3rem;
+  flex-grow: 1;
+  margin: 0;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 1em;
+}
+
+::deep .grid-item {
+  background-color: hsl(0, 0%, 23%);
+  padding: 1em;
+  border-radius: 8px;
+}
+
+::deep .grid-item:hover {
+  background-color: hsl(0, 0%, 27%);
+}
+
+.id {
+  /*font-size: 0.8rem;*/
+  margin-bottom: 0.25rem;
+}
+
+* {
+  color: white;
+}
+
+.name {
+  display: flex;
+  align-items: center;
+}
+.name h1 {
+  font-size: 3rem;
+  flex-grow: 1;
+  margin: 0;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 1em;
+}
+
+::deep .grid-item {
+  background-color: hsl(0, 0%, 23%);
+  padding: 1em;
+  border-radius: 8px;
+}
+
+::deep .grid-item:hover {
+  background-color: hsl(0, 0%, 27%);
+}
+
+.id {
+  /*font-size: 0.8rem;*/
+  margin-bottom: 0.25rem;
+}
+
+dialog::backdrop {
+  background-color: hsla(0, 0%, 0%, 0.7);
+}
+
+dialog {
+  background-color: hsl(0, 0%, 23%);
+  border: none;
+  border-radius: 8px;
+}
+dialog h1 {
+  font-size: 2em;
+}
+dialog form {
+  display: flex;
+  flex-direction: column;
+  column-gap: 8px;
+  row-gap: 8px;
+}
+dialog form div {
+  width: 100%;
+}
+dialog form .config-buttons {
+  display: flex;
+  column-gap: 8px;
+}
+dialog form input {
+  background-color: hsl(0, 0%, 33%);
+  border-radius: 8px;
+  font-size: 1.25em;
+  border: none;
+  outline: none;
+  width: 100%;
+  padding-left: 0.25em;
+}
+dialog form input[type=number] {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+dialog form input[type=number]::-webkit-inner-spin-button, dialog form input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+dialog form .number-input {
+  display: inline-flex;
+  width: 100%;
+}
+dialog form .number-input input {
+  margin: 0;
+  border-left: 2px solid rgba(20, 20, 20, 0.1);
+  border-right: 2px solid rgba(20, 20, 20, 0.1);
+  border-radius: 0;
+}
+dialog form .number-input button {
+  top: 0;
+  padding: 0;
+  font-size: 0.75rem;
+  border: none;
+  width: 2rem;
+}
+dialog form .number-input #plus {
+  padding-left: 0;
+  border-radius: 0 8px 8px 0;
+}
+dialog form .number-input #minus {
+  padding-right: 0;
+  border-radius: 8px 0 0 8px;
+}
+dialog form .number-input button:after {
+  display: inline-block;
+  position: absolute;
+  transform: translate(-50%, -50%) rotate(180deg);
+}
+dialog form .number-input button.plus:after {
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+dialog button {
+  background-color: hsl(0, 0%, 33%);
+  border: 2px solid hsl(0, 0%, 30%);
+  border-radius: 8px;
+  font-size: 1.25rem;
+  width: 100%;
+}
+
+/*# sourceMappingURL=Sensor.razor.css.map */

@@ -1,0 +1,51 @@
+* {
+  color: white;
+}
+
+.name {
+  display: flex;
+  align-items: center;
+}
+.name h1 {
+  font-size: 3rem;
+  flex-grow: 1;
+  margin: 0;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 1em;
+}
+
+::deep .grid-item {
+  background-color: hsl(0, 0%, 23%);
+  padding: 1em;
+  border-radius: 8px;
+}
+
+::deep .grid-item:hover {
+  background-color: hsl(0, 0%, 27%);
+}
+
+.id {
+  /*font-size: 0.8rem;*/
+  margin-bottom: 0.25rem;
+}
+
+.name-flex {
+  display: flex;
+  align-items: center;
+}
+.name-flex h1 {
+  flex-grow: 1;
+  margin: 0;
+  font-size: 2em;
+  font-weight: bold;
+}
+.name-flex img {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+/*# sourceMappingURL=SensorComponent.razor.css.map */

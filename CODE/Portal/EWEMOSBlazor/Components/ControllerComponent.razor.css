@@ -1,0 +1,70 @@
+* {
+  color: white;
+}
+
+.name {
+  display: flex;
+  align-items: center;
+}
+.name h1 {
+  font-size: 3rem;
+  flex-grow: 1;
+  margin: 0;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 1em;
+}
+
+::deep .grid-item {
+  background-color: hsl(0, 0%, 23%);
+  padding: 1em;
+  border-radius: 8px;
+}
+
+::deep .grid-item:hover {
+  background-color: hsl(0, 0%, 27%);
+}
+
+.id {
+  /*font-size: 0.8rem;*/
+  margin-bottom: 0.25rem;
+}
+
+h1 {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.sensor-list {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 8px;
+  row-gap: 8px;
+}
+.sensor-list .sensor-list-icon {
+  width: 3em;
+}
+.sensor-list .sensor-list-icon img {
+  width: 100%;
+}
+.sensor-list .sensor-list-count {
+  border-radius: 8px;
+  line-height: 1.5em;
+  text-align: center;
+  font-weight: bold;
+  background: mediumpurple;
+  width: 100%;
+}
+
+/*
+TODO: more visual consistency - apply material dark theme
+
+	element {
+  border: 2px solid #332940;
+  background-color: rgba(255,255,255,0.05);
+  elevation: 1dp;*/
+
+/*# sourceMappingURL=ControllerComponent.razor.css.map */

@@ -1,0 +1,50 @@
+@page "/controller/{controllerID}"
+@using EWEMOSBlazor.Components
+
+<script src="./Pages/Controller.razor.js"></script>
+
+@if (EMController is not null)
+{
+	<PageTitle>@EMController.Name</PageTitle>
+
+	<div class="name">
+		<h1>@EMController.Name</h1>
+		<a role="button" @onclick="OnEditClick">
+			<img src="mdi--cog.svg" alt="Configure" style="width: 1.5em"/>
+		</a>
+	</div>
+
+	<span class="id">ID: @EMController.ID</span>
+
+	<hr/>
+
+	<div class="grid-container">
+		@foreach (var sensor in EMController.Sensors)
+		{
+			<SensorComponent Sensor="@sensor.Value"></SensorComponent>
+		}
+	</div>
+
+	<dialog>
+		<h1>Editing @EMController.Name</h1>
+		<hr/>
+
+		<form method="post" @onsubmit="OnSubmit">
+			<div>
+				<label for="controllerName">Controller name:</label><br>
+				<input id="controllerName" type="text" @bind="ControllerName" bind:event="oninput" pattern="[A-Za-z0-9]{1,64}"/>
+			</div>
+
+			<div class="config-buttons">
+				<button type="button" onclick="closeDialog()">Cancel</button>
+				<button >Confirm</button>
+			</div>
+		</form>
+
+	</dialog>
+}
+else
+{
+	<PageTitle>Unknown controller</PageTitle>
+	<h1>Unknown controller: @ControllerID</h1>
+}

@@ -1,0 +1,50 @@
+@using EWEMOSBlazor.Data
+@inject MQTTController MQTTController
+@inject NavigationManager Navigation 
+
+@if (Sensor is not null)
+{
+	<div class="grid-item" @onclick="SensorClick">
+		<div class="name-flex">
+			<h1>@Sensor.Name</h1>
+			@if (Sensor.State == ConnectionState.Connected)
+			{
+				<img title="@Sensor.State" src="mdi--lan-connect.svg" alt="@Sensor.State"/>
+			}
+			else
+			{
+				<img title="@Sensor.State" src="mdi--lan-disconnect.svg" alt="@Sensor.State"/>
+			}
+		</div>
+		<p>ID: @Sensor.ID</p>
+		
+		<hr>
+		
+		<p>Type: @Sensor.Type</p>
+		<div title="Interval" style="display: flex; align-items: center;">
+			<img src="mdi--timer.svg" style="width: 1.25em; height: 1.25em; margin-right: 0.25em" alt=""/>
+			<p style="margin: 0">@Sensor.Interval ms</p>
+		</div>
+	</div>
+}
+
+@code {
+
+	// todo: name and interval editing
+	[Parameter] public required EMSensor? Sensor { get; set; }
+
+	protected override void OnInitialized()
+	{
+		if (Sensor is null) return;
+
+		Sensor.OnChanged += () => { InvokeAsync(StateHasChanged); };
+	}
+
+	private void SensorClick()
+	{
+		if (Sensor is null) return;
+
+		Navigation.NavigateTo($"controller/{Sensor.ControllerID}/{Sensor.ID}");
+	}
+
+}

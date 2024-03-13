@@ -1,0 +1,36 @@
+@using EWEMOSBlazor.Data
+@if (Controller is not null)
+{
+	<div class="grid-item" @onclick="ControllerClick">
+		<h1>@Controller.Name</h1>
+		<p>ID: @Controller.ID</p>
+		
+		<hr>
+		
+		<div class="sensor-list">
+			@*bug: problem with concurrency*@
+			@foreach (var group in Controller.Sensors.GroupBy(sensor => sensor.Value.Type))
+			{
+				<div class="sensor-list-icon" title="@group.Key">
+					@switch (group.Key)
+					{
+						case SensorType.Temperature:
+							<img src="mdi--temperature.svg" alt="Temperature"/>
+							break;
+						case SensorType.Pressure:
+							<img src="mdi--gauge.svg" alt="Pressure"/>
+							break;
+						case SensorType.Humidity:
+							<img src="mdi--humidity.svg" alt="Humidity"/>
+							break;
+					}
+					<div class="sensor-list-count">@group.Count()</div>
+				</div>
+			}
+		</div>
+	</div>
+}
+else
+{
+	<h1>null</h1>
+}

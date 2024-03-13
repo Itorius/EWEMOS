@@ -1,0 +1,28 @@
+﻿@page "/dashboard"
+@using EWEMOSBlazor.Data
+@using EWEMOSBlazor.Components
+@inject MQTTController MQTTController
+
+<PageTitle>Dashboard</PageTitle>
+
+<h1>Dashboard</h1>
+
+<div class="grid-container">
+	@foreach (var controller in MQTTController.Controllers.OrderBy(x=>x.Value.Name))
+	{
+		<ControllerComponent Controller="@controller.Value"/>
+	}
+</div>
+
+@code
+{
+
+	protected override Task OnInitializedAsync()
+	{
+		MQTTController.OnControllerChanged = () => { InvokeAsync(StateHasChanged); };
+
+		return Task.CompletedTask;
+	}
+
+	// NOTE: nav menu on the top?? 
+}

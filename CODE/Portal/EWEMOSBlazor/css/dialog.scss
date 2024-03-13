@@ -1,0 +1,116 @@
+@import 'common';
+
+dialog::backdrop
+{
+	background-color: hsl(0, 0%, 0%, 0.7);
+}
+
+dialog
+{
+	background-color: $background-color;
+	border: none;
+	border-radius: $border-radius;
+
+	h1
+	{
+		font-size: 2em;
+	}
+
+	form
+	{
+		display: flex;
+		flex-direction: column;
+		column-gap: 8px;
+		row-gap: 8px;
+
+		div
+		{
+			width: 100%;
+		}
+
+		.config-buttons
+		{
+			display: flex;
+			column-gap: 8px;
+		}
+
+		input
+		{
+			background-color: hsl(0, 0%, 33%);
+			border-radius: $border-radius;
+			font-size: 1.25em;
+			border: none;
+			outline: none;
+			width: 100%;
+			padding-left: 0.25em;
+		}
+
+		input[type="number"]
+		{
+			-webkit-appearance: textfield;
+			-moz-appearance: textfield;
+			appearance: textfield;
+		}
+
+		input[type='number']::-webkit-inner-spin-button, input[type='number']::-webkit-outer-spin-button
+		{
+			-webkit-appearance: none;
+		}
+
+		.number-input
+		{
+			display: inline-flex;
+			width: 100%;
+
+			input
+			{
+				margin: 0;
+				border-left: 2px solid rgba(20, 20, 20, 0.1);
+				border-right: 2px solid rgba(20, 20, 20, 0.1);
+				border-radius: 0;
+			}
+
+			button
+			{
+				top: 0;
+				padding: 0;
+				font-size: 0.75rem;
+				border: none;
+				width: 2rem;
+			}
+
+			#plus
+			{
+				padding-left: 0;
+				border-radius: 0 $border-radius $border-radius 0;
+			}
+
+			#minus
+			{
+				padding-right: 0;
+				border-radius: $border-radius 0 0 $border-radius;
+			}
+		}
+
+		.number-input button:after
+		{
+			display: inline-block;
+			position: absolute;
+			transform: translate(-50%, -50%) rotate(180deg);
+		}
+
+		.number-input button.plus:after
+		{
+			transform: translate(-50%, -50%) rotate(0deg);
+		}
+	}
+
+	button
+	{
+		background-color: hsl(0, 0%, 33%);
+		border: 2px solid hsl(0, 0%, 30%);
+		border-radius: $border-radius;
+		font-size: 1.25rem;
+		width: 100%;
+	}
+}

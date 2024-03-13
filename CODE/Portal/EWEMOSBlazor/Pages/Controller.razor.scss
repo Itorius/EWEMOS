@@ -1,0 +1,23 @@
+@import '../css/common';
+@import '../css/dialog';
+
+form
+{
+	display: flex;
+	align-items: center;
+}
+
+.oi
+{
+	font-size: 1.2rem;
+}
+
+p::deep
+{
+	margin-bottom: 0.25rem;
+}
+
+hr::deep
+{
+	margin: 0.5rem 0;
+}

@@ -1,0 +1,182 @@
+using System.Collections.Concurrent;
+using MQTTnet;
+using MQTTnet.Protocol;
+using MQTTnet.Server;
+
+namespace EWEMOSBlazor.Data;
+
+public class MQTTController
+{
+	public static readonly ConcurrentDictionary<string, EMController> Controllers = new();
+	public static readonly ConcurrentDictionary<UInt128, EMSensor> Sensors = new();
+
+	// todo: add a back button in top of the page
+
+	// todo: split into multiple actions (controller, sensor)
+	public Action? RefreshState;
+	public MqttServer Server = null!;
+	private object clientLock = new();
+
+	public void Init(MqttServer server)
+	{
+		Server = server;
+
+		server.ValidatingConnectionAsync += ValidateConnection;
+		server.ClientConnectedAsync += ClientConnected;
+		server.ClientDisconnectedAsync += ClientDisconnected;
+		server.InterceptingPublishAsync += ServerOnInterceptingPublishAsync;
+	}
+
+	#region Callbacks
+	public Task ValidateConnection(ValidatingConnectionEventArgs args)
+	{
+		Console.WriteLine($"Client '{args.ClientId}' wants to connect. Accepting!");
+
+		return Task.CompletedTask;
+	}
+
+	public Task ClientConnected(ClientConnectedEventArgs args)
+	{
+		Console.WriteLine($"Client '{args.ClientId}' connected.");
+
+		lock (clientLock)
+		{
+			if (!Controllers.ContainsKey(args.ClientId))
+			{
+				Controllers.TryAdd(args.ClientId, new EMController(args.ClientId));
+				RefreshState?.Invoke();
+			}
+		}
+
+		return Task.CompletedTask;
+	}
+
+	private Task ClientDisconnected(ClientDisconnectedEventArgs args)
+	{
+		Console.WriteLine($"Client '{args.ClientId}' disconnected.");
+
+		lock (clientLock)
+		{
+			for (int i = 0; i < Sensors.Count; i++)
+			{
+				var sensor = Sensors.ElementAt(i);
+				Sensors.TryRemove(sensor);
+			}
+
+			if (Controllers.ContainsKey(args.ClientId))
+			{
+				Controllers.TryRemove(args.ClientId, out _);
+				RefreshState?.Invoke();
+			}
+		}
+
+		return Task.CompletedTask;
+	}
+
+	private Task ServerOnInterceptingPublishAsync(InterceptingPublishEventArgs arg)
+	{
+		string[] args = arg.ApplicationMessage.Topic.Split('/');
+		if (args.Length < 2) return Task.CompletedTask;
+
+		var controller = Controllers[arg.ClientId];
+
+		switch (args[1])
+		{
+			case "name":
+			{
+				// bug: seems like it has problems with the null characters 
+				controller.Name = arg.ApplicationMessage.ConvertPayloadToString();
+				Controllers[arg.ClientId] = controller;
+				RefreshState?.Invoke();
+				break;
+			}
+			case "config":
+			{
+				UInt128 sensorID = Utility.ToUInt128(arg.ApplicationMessage.PayloadSegment[..16]);
+
+				if (!controller.Sensors.TryGetValue(sensorID, out var sensor))
+				{
+					sensor = new EMSensor(controller.ID, sensorID);
+					sensor.Data = Utility.FromBytes<SensorData>(arg.ApplicationMessage.PayloadSegment[16..].ToArray());
+					controller.Sensors.Add(sensorID, sensor);
+
+					Sensors.TryAdd(sensorID, sensor);
+				}
+				RefreshState?.Invoke();
+				Console.WriteLine(sensorID);
+				break;
+			}
+			case "value":
+			{
+				controller.Sensors.First().Value.Value = BitConverter.ToSingle(arg.ApplicationMessage.PayloadSegment);
+				RefreshState?.Invoke();
+				break;
+			}
+			// default:
+			// {
+			// 	string sensorID = args[1];
+			//
+			// 	// if (!controller.Sensors.TryGetValue(sensorID, out var sensor))
+			// 	// {
+			// 	// 	sensor = new EMSensor(controller.ID, sensorID);
+			// 	// 	controller.Sensors.Add(sensorID, sensor);
+			// 	//
+			// 	// 	Sensors.TryAdd(sensorID, sensor);
+			// 	// }
+			//
+			// 	EMSensor sensor = Sensors.GetOrAdd(sensorID, s =>
+			// 	{
+			// 		var sens = new EMSensor(controller.ID, s);
+			// 		controller.Sensors.Add(sensorID, sens);
+			// 		return sens;
+			// 	});
+			// 	
+			// 	if (args.Length == 3)
+			// 	{
+			// 		switch (args[2])
+			// 		{
+			// 			case "config":
+			// 			{
+			// 				sensor.Data = Utility.FromBytes<SensorData>(arg.ApplicationMessage.PayloadSegment.ToArray());
+			// 				break;
+			// 			}
+			// 			case "value":
+			// 			{
+			// 				sensor.Value = BitConverter.ToSingle(arg.ApplicationMessage.PayloadSegment);
+			// 				sensor.OnUpdate?.Invoke();
+			// 				break;
+			// 			}
+			// 		}
+			// 	}
+			//
+			// 	RefreshState?.Invoke();
+			//
+			// 	break;
+			// }
+		}
+
+		// Console.WriteLine($"{arg.ApplicationMessage.Topic} {BitConverter.ToString(arg.ApplicationMessage.PayloadSegment.ToArray())}");
+		return Task.CompletedTask;
+	}
+	#endregion
+
+	public async Task SendControllerName(EMController controller, string name)
+	{
+		controller.Name = name;
+
+		var message = new MqttApplicationMessageBuilder().WithTopic($"{controller.ID}/name").WithPayload(name).Build();
+		await Server.InjectApplicationMessage(new InjectedMqttApplicationMessage(message) { SenderClientId = controller.ID }, CancellationToken.None);
+	}
+
+	public async void SendSensorConfig(EMSensor sensor, string name, uint interval)
+	{
+		// bug: we dont know if the controller received the data successfully, potential desync
+		sensor.Data.Name = name;
+		sensor.Data.Interval = interval;
+
+		byte[] bytes = Utility.ToBytes(sensor.Data);
+
+		var message = new MqttApplicationMessageBuilder().WithTopic($"{sensor.ControllerID}/config").WithPayload(bytes).WithQualityOfServiceLevel(MqttQualityOfServiceLevel.ExactlyOnce).Build();
+		await Server.InjectApplicationMessage(new InjectedMqttApplicationMessage(message) { SenderClientId = sensor.ControllerID }, CancellationToken.None);
+	}
+}

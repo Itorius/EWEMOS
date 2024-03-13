@@ -1,0 +1,43 @@
+@import '../css/common.scss';
+
+h1
+{
+	font-size: 2em;
+	font-weight: bold;
+}
+
+.sensor-list
+{
+	display: flex; 
+	flex-wrap: wrap;
+	column-gap: 8px;
+	row-gap: 8px;
+
+	.sensor-list-icon
+	{
+		width: 3em;
+
+		img
+		{
+			width: 100%;
+		}
+	}
+
+	.sensor-list-count
+	{
+		border-radius: $border-radius;
+		line-height: 1.5em;
+		text-align: center;
+		font-weight: bold;
+		background: $highlight-color;
+		width: 100%;
+	}
+}
+
+/*
+TODO: more visual consistency - apply material dark theme
+ 
+	element {
+  border: 2px solid #332940;
+  background-color: rgba(255,255,255,0.05);
+  elevation: 1dp;*/

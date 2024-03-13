@@ -1,0 +1,128 @@
+[
+    {
+      "ID": "Wu8rMuTDjsA",
+      "Name": "Controller1",
+      "Sensors": [
+        {
+          "ID": 575,
+          "Name": "Sensor1",
+          "Type": 2,
+          "Interval": 500
+        },
+        {
+          "ID": 7687,
+          "Name": "Sensor2",
+          "Type": 1,
+          "Interval": 700
+        },
+        {
+          "ID": 7878678,
+          "Name": "Sensor3",
+          "Type": 0,
+          "Interval": 600
+        },
+        {
+          "ID": 45677,
+          "Name": "Sensor4",
+          "Type": 1,
+          "Interval": 1000
+        },
+        {
+          "ID": 78956,
+          "Name": "Sensor5",
+          "Type": 0,
+          "Interval": 900
+        }
+      ]
+    },
+    {
+      "ID": "7VbN5j9yPyQ",
+      "Name": "Controller2",
+      "Sensors": [
+        {
+          "ID": 786786,
+          "Name": "Sensor1",
+          "Type": 2,
+          "Interval": 700
+        },
+        {
+          "ID": 768786,
+          "Name": "Sensor2",
+          "Type": 1,
+          "Interval": 700
+        }
+      ]
+    },
+    {
+      "ID": "Pl4Tg6FF-rg",
+      "Name": "Controller3",
+      "Sensors": [
+        {
+          "ID": 15247856,
+          "Name": "Sensor1",
+          "Type": 2,
+          "Interval": 500
+        },
+        {
+          "ID": 257867874,
+          "Name": "Sensor2",
+          "Type": 2,
+          "Interval": 600
+        },
+        {
+          "ID": 8378678,
+          "Name": "Sensor3",
+          "Type": 1,
+          "Interval": 800
+        }
+      ]
+    },
+    {
+      "ID": "Avy1Q-WyRyk",
+      "Name": "Controller4",
+      "Sensors": [
+        {
+          "ID": 5287836,
+          "Name": "Sensor1",
+          "Type": 2,
+          "Interval": 600
+        },
+        {
+          "ID": 3783837,
+          "Name": "Sensor2",
+          "Type": 2,
+          "Interval": 500
+        },
+        {
+          "ID": 7837578,
+          "Name": "Sensor3",
+          "Type": 1,
+          "Interval": 800
+        },
+        {
+          "ID": 37835448,
+          "Name": "Sensor4",
+          "Type": 2,
+          "Interval": 600
+        }
+      ]
+    },
+    {
+      "ID": "ATlXdXDNjEU",
+      "Name": "Controller5",
+      "Sensors": [
+        {
+          "ID": 375348,
+          "Name": "Sensor1",
+          "Type": 1,
+          "Interval": 500
+        },
+        {
+          "ID": 3756345,
+          "Name": "Sensor2",
+          "Type": 1,
+          "Interval": 900
+        }
+      ]
+    }
+  ]

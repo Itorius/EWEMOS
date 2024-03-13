@@ -1,0 +1,21 @@
+@import "../css/common";
+
+.name-flex
+{
+	display: flex;
+	align-items: center;
+
+	h1
+	{
+		flex-grow: 1;
+		margin: 0;
+		font-size: 2em;
+		font-weight: bold;
+	}
+
+	img
+	{
+		width: 1.5em;
+		height: 1.5em;
+	}
+}

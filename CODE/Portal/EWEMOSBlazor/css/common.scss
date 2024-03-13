@@ -1,0 +1,51 @@
+$border-radius: 8px;
+$background-color: hsl(0, 0%, 23%);
+$highlight-color: mediumpurple;
+
+*
+{
+	color: white;
+}
+
+.name
+{
+	display: flex;
+	align-items: center;
+	
+	h1 {
+		//background: transparent;
+		//border: none;
+		font-size: 3rem;
+		//font-weight: 500;
+		//line-height: 1.2;
+		//color: white;
+		flex-grow: 1;
+		//padding: 0;
+		margin: 0;
+	}
+}
+
+.grid-container
+{
+	display: grid;
+	grid-template-columns: auto auto;
+	gap: 1em;
+}
+
+::deep .grid-item
+{
+	background-color: hsl(0, 0%, 23%);
+	padding: 1em;
+	border-radius: $border-radius;
+}
+
+::deep .grid-item:hover
+{
+	background-color: hsl(0, 0%, 27%);
+}
+
+.id
+{
+	/*font-size: 0.8rem;*/
+	margin-bottom: 0.25rem;
+}

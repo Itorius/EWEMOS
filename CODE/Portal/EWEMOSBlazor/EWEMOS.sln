@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EWEMOSBlazor", "EWEMOSBlazor.csproj", "{C24D58F2-B791-4147-B6E9-A5D7D9061953}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EWEMOSClient", "..\EWEMOSClient\EWEMOSClient.csproj", "{08C03BE2-0617-4343-9672-A1BBDA479F06}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C24D58F2-B791-4147-B6E9-A5D7D9061953}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C24D58F2-B791-4147-B6E9-A5D7D9061953}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C24D58F2-B791-4147-B6E9-A5D7D9061953}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C24D58F2-B791-4147-B6E9-A5D7D9061953}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08C03BE2-0617-4343-9672-A1BBDA479F06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08C03BE2-0617-4343-9672-A1BBDA479F06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08C03BE2-0617-4343-9672-A1BBDA479F06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08C03BE2-0617-4343-9672-A1BBDA479F06}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
