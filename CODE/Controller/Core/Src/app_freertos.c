@@ -192,13 +192,13 @@ void init_thread(void* arg)
 
 	while (1)
 	{
-//		if (!lwesp_sta_is_joined())
-//		{
-//			printf("Attempting to join Wi-Fi\r\n");
-//			if (lwesp_sta_join("SauronNet.Horcicka1", "10821082", NULL, sta_join_callback, 0, 1) == lwespOK)
-//			{
-//			}
-//		}
+		if (!lwesp_sta_is_joined())
+		{
+			printf("Attempting to join Wi-Fi\r\n");
+			if (lwesp_sta_join("SauronNet.Horcicka1", "10821082", NULL, sta_join_callback, 0, 1) == lwespOK)
+			{
+			}
+		}
 
 		osDelay(5000);
 	}

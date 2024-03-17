@@ -1,11 +1,9 @@
 #include <stdio.h>
 #include <math.h>
-#include "data_types.h"
 #include "fdcan.h"
 #include "FreeRTOS.h"
 #include "cmsis_os.h"
 #include "lwesp/apps/lwesp_mqtt_client.h"
-#include "mqtt_message.h"
 #include "CAN.h"
 #include "MQTT.h"
 
@@ -101,17 +99,7 @@ void ProcessMessage()
 			Device* device;
 			if ((device = find_device(RxMessage.ID)))
 			{
-				MQTT_SendData(device, RxMessage.data.bytes);
-//				switch (RxMessage.data.dataBlob.type)
-//				{
-//					case FLOAT:
-//					{
-//						float test = 0;
-//						memcpy(&test, RxMessage.data.dataBlob.data, 4);
-//						printf("Received FLOAT %f\n", test);
-//						break;
-//					}
-//				}
+				MQTT_SendData(device, &RxMessage.data.dataBlob);
 			}
 
 			break;
@@ -140,6 +128,7 @@ void CANTask(void* argument)
 				if (devices[i].status != CONNECTED)
 					continue;
 
+//				if (osKernelGetTickCount() - devices[i].lastHeartbeat > 5 * devices[i].config.Interval)
 				if (osKernelGetTickCount() - devices[i].lastHeartbeat > 5000)
 				{
 					MQTT_SendStatusChange(&devices[i], NOT_CONNECTED);

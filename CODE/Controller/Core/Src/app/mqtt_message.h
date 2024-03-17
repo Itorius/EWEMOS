@@ -4,12 +4,14 @@
 #include <stdint-gcc.h>
 #include "data_types.h"
 
+// Total size 68 bytes
 typedef struct
 {
 	char Name[64];
 	uint32_t ConfigSet;
 } MqttMessageName __attribute__((aligned(4)));
 
+// Total size 44 bytes
 typedef struct
 {
 	uint32_t ID;
@@ -19,16 +21,20 @@ typedef struct
 	char Name[32];
 } MqttMessageConfig __attribute__((aligned(4)));
 
+// Total size 8 bytes
 typedef struct
 {
 	uint32_t ID;
-	uint32_t State;
+	ConnectionStatus State;
 } MqttMessageState __attribute__((aligned(4)));
 
+// Total size 60 bytes
 typedef struct
 {
 	uint32_t ID;
-	uint8_t Data[56];
+	DataType Type;
+	uint16_t Length;
+	uint8_t Data[52];
 } MqttMessageData __attribute__((aligned(4)));
 
 #endif

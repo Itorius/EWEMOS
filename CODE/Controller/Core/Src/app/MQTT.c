@@ -27,8 +27,8 @@ extern struct DeviceConfig
 
 static lwesp_mqtt_client_info_t mqtt_client_info = {
 	.id = "EWEMOS",
-	.user="test",
-	.pass="test",
+	.user = "test",
+	.pass = "test",
 	.keep_alive = 15
 };
 
@@ -65,7 +65,6 @@ static void mqtt_connect_callback(lwesp_mqtt_client_p client, lwesp_mqtt_evt_t* 
 			if (status == LWESP_MQTT_CONN_STATUS_ACCEPTED)
 			{
 				printf("MQTT accepted!\n");
-
 
 				MQTT_SendName(Config.Name);
 
@@ -147,7 +146,7 @@ static void mqtt_connect_callback(lwesp_mqtt_client_p client, lwesp_mqtt_evt_t* 
 	}
 }
 
-void MQTT_SendStatusChange(const Device* device, ConStatus status)
+void MQTT_SendStatusChange(const Device* device, ConnectionStatus status)
 {
 	if (mqtt_client == NULL || !lwesp_mqtt_client_is_connected(mqtt_client))
 		return;
@@ -163,16 +162,18 @@ void MQTT_SendStatusChange(const Device* device, ConStatus status)
 	lwesp_mqtt_client_publish(mqtt_client, TOPIC_STATE, &message, sizeof(message), LWESP_MQTT_QOS_AT_MOST_ONCE, 0, 0);
 }
 
-void MQTT_SendData(const Device* device, void* data)
+void MQTT_SendData(const Device* device, const DataBlob* dataBlob)
 {
 	if (mqtt_client == NULL || !lwesp_mqtt_client_is_connected(mqtt_client))
 		return;
 
 	MqttMessageData message = {
 		.ID = device->ID,
+		.Type = dataBlob->type,
+		.Length = dataBlob->dataLength
 	};
 
-	memcpy(message.Data, data, sizeof(data));
+	memcpy(message.Data, dataBlob->data, 52);
 
 	// NOTE: dont send all 56 bytes
 	lwesp_mqtt_client_publish(mqtt_client, TOPIC_DATA, &message, sizeof(message), LWESP_MQTT_QOS_AT_MOST_ONCE, 0, 0);
@@ -183,8 +184,8 @@ void MQTT_SendName(char* name)
 	if (mqtt_client == NULL || !lwesp_mqtt_client_is_connected(mqtt_client))
 		return;
 
-	MqttMessageName mqtt_message;
-	memcpy(mqtt_message.Name, &Config.Name, 64);
+	MqttMessageName mqtt_message = {0};
+	memcpy(mqtt_message.Name, name, 64);
 
 	lwesp_mqtt_client_publish(mqtt_client, TOPIC_NAME, &mqtt_message, sizeof(mqtt_message), LWESP_MQTT_QOS_EXACTLY_ONCE, 0, TOPIC_NAME);
 }
@@ -199,7 +200,7 @@ void MQTT_SendConfig(const Device* device)
 		.Type = device->config.Type,
 		.Interval = device->config.Interval
 	};
-	memcpy(message.Name, (*device).config.Name, 32);
+	memcpy(message.Name, device->config.Name, 32);
 
 	lwesp_mqtt_client_publish(mqtt_client, TOPIC_CONFIG, &message, sizeof(message), LWESP_MQTT_QOS_EXACTLY_ONCE, 0, 0);
 }

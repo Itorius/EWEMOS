@@ -1,12 +1,11 @@
 #ifndef LWESP_MQTT_H
 #define LWESP_MQTT_H
 
-#include "CAN.h"
-#include "lwesp/apps/lwesp_mqtt_client.h"
+#include "can_message.h"
 
-void MQTT_SendStatusChange(const Device* device, ConStatus status);
+void MQTT_SendStatusChange(const Device* device, ConnectionStatus status);
 
-void MQTT_SendData(const Device* device, void* data);
+void MQTT_SendData(const Device* device, const DataBlob* dataBlob);
 
 void MQTT_SendName(char* name);
 

@@ -92,7 +92,6 @@ int main(void)
   MX_GPIO_Init();
   MX_ICACHE_Init();
   MX_I2C2_Init();
-  MX_UART4_Init();
   MX_FDCAN1_Init();
   /* USER CODE BEGIN 2 */
 
