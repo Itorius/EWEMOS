@@ -8,37 +8,6 @@ namespace EWEMOSBlazor.Data;
 
 public class MQTTController
 {
-	[StructLayout(LayoutKind.Explicit, Size = 44)]
-	public struct MqttMessageConfig
-	{
-		[FieldOffset(0)] public uint ID;
-		[FieldOffset(4)] public SensorType Type;
-		[FieldOffset(6)] public ushort ConfigSet; // NOTE: this is a temporary solution until I switch to MQTT5
-		[FieldOffset(8)] public uint Interval;
-		[FieldOffset(12)] public unsafe fixed byte Name[32];
-	}
-
-	[StructLayout(LayoutKind.Explicit, Size = 68)]
-	public struct MqttMessageName
-	{
-		[FieldOffset(0)] public unsafe fixed byte Name[64];
-		[FieldOffset(64)] public uint ConfigSet; // NOTE: this is a temporary solution until I switch to MQTT5
-	}
-
-	[StructLayout(LayoutKind.Explicit, Size = 8)]
-	public struct MqttMessageState
-	{
-		[FieldOffset(0)] public uint ID;
-		[FieldOffset(4)] public ConnectionState State;
-	}
-
-	[StructLayout(LayoutKind.Explicit, Size = 8)]
-	public struct MqttMessageData
-	{
-		[FieldOffset(0)] public uint ID;
-		[FieldOffset(4)] public float Data;
-	}
-
 	public static readonly ConcurrentDictionary<string, EMController> Controllers = new();
 
 	public Action? OnControllerChanged;
@@ -98,7 +67,7 @@ public class MQTTController
 
 	private unsafe Task ServerOnInterceptingPublishAsync(InterceptingPublishEventArgs message)
 	{
-		Console.WriteLine($"Received message from \"{message.ClientId}\", topic \"{message.ApplicationMessage.Topic}\", payload length: {message.ApplicationMessage.PayloadSegment.Count}");
+		// Console.WriteLine($"Received message from \"{message.ClientId}\", topic \"{message.ApplicationMessage.Topic}\", payload length: {message.ApplicationMessage.PayloadSegment.Count}");
 
 		string[] args = message.ApplicationMessage.Topic.Split('/');
 		if (args.Length < 2) return Task.CompletedTask;
@@ -133,7 +102,14 @@ public class MQTTController
 
 					Console.WriteLine($"Received new sensor '{sensor.Name}' ({sensor.ID}): type {sensor.Type}, interval {sensor.Interval} ms");
 				}
-
+				else
+				{
+					sensor.Interval = mqtt_message.Interval;
+					sensor.Name = Encoding.Default.GetString(mqtt_message.Name, 32).TrimEnd('\0');
+					sensor.OnChanged?.Invoke();
+					Console.WriteLine($"Received updated config for sensor '{sensor.Name}' ({sensor.ID}): type {sensor.Type}, interval {sensor.Interval} ms");
+				}
+				
 				break;
 			}
 			case "state":
@@ -156,10 +132,14 @@ public class MQTTController
 
 				if (controller.Sensors.TryGetValue(mqtt_message.ID, out var sensor))
 				{
-					sensor.Data = mqtt_message.Data;
+					if (mqtt_message.Type == DataType.FLOAT)
+					{
+						sensor.Data = *(float*)mqtt_message.Data;
+					}
+
 					sensor.OnChanged?.Invoke();
 
-					Console.WriteLine($"Received data from sensor '{sensor.Name}' ({sensor.ID}): data {mqtt_message.Data}");
+					Console.WriteLine($"Received data from sensor '{sensor.Name}' ({sensor.ID}): data {sensor.Data}");
 				}
 
 				break;
@@ -170,11 +150,8 @@ public class MQTTController
 	}
 	#endregion
 
-	// bug: we dont know if the controller received the data successfully, potential desync
 	public async Task SendControllerName(EMController controller, string name)
 	{
-		controller.Name = name; // this will be removed
-
 		MqttMessageName mqttMessage = new()
 		{
 			ConfigSet = 1
@@ -186,14 +163,11 @@ public class MQTTController
 		}
 
 		var message = new MqttApplicationMessageBuilder().WithTopic($"{controller.ID}/name").WithPayload(Utility.ToBytes(mqttMessage)).Build();
-		await Server.InjectApplicationMessage(new InjectedMqttApplicationMessage(message) { SenderClientId = controller.ID }, CancellationToken.None);
+		await Server.InjectApplicationMessage(new InjectedMqttApplicationMessage(message) { SenderClientId = "Server" }, CancellationToken.None);
 	}
 
 	public async Task SendSensorConfig(EMSensor sensor, string name, uint interval)
 	{
-		sensor.Name = name;
-		sensor.Interval = interval;
-
 		MqttMessageConfig mqttMessage = new()
 		{
 			ID = sensor.ID,
@@ -207,6 +181,6 @@ public class MQTTController
 		}
 
 		var message = new MqttApplicationMessageBuilder().WithTopic($"{sensor.ControllerID}/config").WithPayload(Utility.ToBytes(mqttMessage)).Build();
-		await Server.InjectApplicationMessage(new InjectedMqttApplicationMessage(message) { SenderClientId = sensor.ControllerID }, CancellationToken.None);
+		await Server.InjectApplicationMessage(new InjectedMqttApplicationMessage(message) { SenderClientId = "Server" }, CancellationToken.None);
 	}
 }

@@ -14,6 +14,12 @@ public enum ConnectionState : uint
 	NotConnected = 2
 }
 
+public enum DataType : ushort
+{
+	FLOAT = 1,
+	UINT32 = 2
+}
+
 public class EMController(string id)
 {
 	public readonly string ID = id;
