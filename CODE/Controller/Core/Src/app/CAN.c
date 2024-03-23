@@ -128,8 +128,8 @@ void CANTask(void* argument)
 				if (devices[i].status != CONNECTED)
 					continue;
 
-//				if (osKernelGetTickCount() - devices[i].lastHeartbeat > 5 * devices[i].config.Interval)
-				if (osKernelGetTickCount() - devices[i].lastHeartbeat > 5000)
+				if (osKernelGetTickCount() - devices[i].lastHeartbeat > 5 * devices[i].config.Interval)
+//				if (osKernelGetTickCount() - devices[i].lastHeartbeat > 5000)
 				{
 					MQTT_SendStatusChange(&devices[i], NOT_CONNECTED);
 
