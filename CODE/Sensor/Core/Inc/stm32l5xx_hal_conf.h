@@ -168,7 +168,7 @@
   */
 
 #define  VDD_VALUE					  3300UL /*!< Value of VDD in mv */
-#define  TICK_INT_PRIORITY            7UL    /*!< tick interrupt priority */
+#define  TICK_INT_PRIORITY            0UL    /*!< tick interrupt priority */
 #define  USE_RTOS                     0U
 
 /* ########################## Assert Selection ############################## */
@@ -176,7 +176,7 @@
   * @brief Uncomment the line below to expanse the "assert_param" macro in the
   *        HAL drivers code
   */
-/* #define USE_FULL_ASSERT    1U */
+ #define USE_FULL_ASSERT    1U
 
 /* ################## Register callback feature configuration ############### */
 /**

@@ -4,8 +4,8 @@
 #include "MQTT.h"
 
 
-//#define MQTT_SERVER "192.168.1.7"
-#define MQTT_SERVER "itorius.com"
+#define MQTT_SERVER "192.168.1.7"
+//#define MQTT_SERVER "itorius.com"
 #define MQTT_PORT 1883
 
 volatile lwesp_mqtt_client_p mqtt_client;
