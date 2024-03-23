@@ -8,7 +8,7 @@ typedef enum
 	Temperature = 0,
 	Pressure = 1,
 	Humidity = 2,
-	SensorType_MAX = UINT32_MAX
+	SensorType_MAX = UINT16_MAX
 } SensorType;
 
 typedef enum
